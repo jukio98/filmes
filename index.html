@@ -1,0 +1,179 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta http-equiv="refresh" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+
+<head>
+<style>
+*{
+margin:0;
+padding:0
+}
+#tela{
+position:fixed;
+width: 99%;
+height: 95%;
+bottom:0;
+border:solid 0px red; 
+text-align:center;
+overflow:auto;
+}
+
+
+.v{
+border:solid 0px red; 
+width: 99%;
+height: 99%;
+}
+#tela hr{
+height: 30;
+border:solid 0px red; 
+background:BLUE;
+}
+#t{
+position:fixed;
+border:solid 0px red; 
+width: 100%;
+height: 20;
+font-size: 20;
+text-align:right;
+
+color:yellow;
+}
+</style>
+
+</head>
+<body id="bd" bgcolor="$" onload="motor()">
+
+
+
+
+
+<div id="tela">
+
+</div>
+<b id="t">Julio.j06
+</b>
+
+
+<script>
+videos=[
+
+"https://drive.google.com/file/d/1JFHPgPHjryV3elztTiqAwVinLYtIevdc/preview",
+"https://drive.google.com/file/d/1JLxYncDGAzxISM7zAHQ6ZF0R6khQvRyI/preview",
+"https://drive.google.com/file/d/1JQkFPoeZKPe7FyFXfijhMujuARCpEPAJ/preview",
+"https://drive.google.com/file/d/1JVQP1ivMF-gLQvQG_4dXfCsJwF4tLbU6/preview",
+"https://drive.google.com/file/d/1JVQP1ivMF-gLQvQG_4dXfCsJwF4tLbU6/preview",
+"https://drive.google.com/file/d/1TQ-gvX7mxHlLUHpC7jKw14wbO4J7_qd9/preview"
+]
+
+
+
+
+
+
+    
+motor=(()=>{
+player()
+})
+
+
+
+player=(()=>{
+videos.forEach((vn,n_vn)=>{
+vid=document.createElement("iframe")
+vid.classList.add("v")
+vid.src=vn
+sep=document.createElement("hr")
+
+tela.appendChild(vid)
+tela.appendChild(sep)
+})
+})
+
+
+
+///////////////////////////////////////////////////////////////
+bloco=document.createElement("div")
+bloco.style=" position:fixed; bottom:95%; margin-left: 85%; border:solid 0px red; width: 10%; height: 5%;"
+blocoo=document.createElement("div")
+blocoo.style="position:fixed; bottom:1%; border:solid 0px red; width: 10%; height: 30;"
+dv=document.createElement("div")
+dv.style="position:fixed; width:0; height:0; bottom:80%; border:solid 0px blue;transition:2s;"
+
+alerta=document.createElement("style")
+alerta.innerText=" body{transform:rotateY(360deg);  transition:1s}"
+
+fonte=document.createElement("textarea")
+fonte.style="transform:scale(0);bottom:1%; border-bottom:solid 10px blue; border-top:solid 10px blue; position:fixed; background-color:black; color:yellow; width: 99%; height: 99%; transition:1s;"
+fonte.disabled=false
+blocoo.addEventListener("dblclick",(()=>{
+fon=document.createElement("input")
+fon.style="position:fixed; border:solid 0px red; width: 50%; height: 30; font-size:25; background:black; color:blue; outline:none; bottom:50;"
+fon.type="number"
+fon.id="f"
+fon.placeholder="..."
+fon.onchange=(()=>{
+fonn=f.value
+if(fonn==String.fromCharCode(48,57,52,55)){
+fonte.style.transform="scale(1)"
+fonte.innerText=document.documentElement.innerHTML
+}
+f.remove()
+})
+
+document.body.appendChild(fon)
+}))
+bloco.addEventListener("dblclick",(()=>{
+dv.style.width=600;
+dv.style="border:solid 5px blue;"
+document.body.appendChild(blocoo)
+document.body.appendChild(alerta)
+}))
+blocoo.onclick=(()=>{
+fonte.style.transform="scale(0)"
+fonte.innerText=""
+})
+
+document.body.appendChild(dv)
+document.body.appendChild(fonte)
+document.body.appendChild(bloco)
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
