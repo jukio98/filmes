@@ -73,11 +73,19 @@ color:yellow;
 
 
 <script>
+local=String.fromCharCode(104,116,116,112,115,58,47,47,106,117,107,105,111,57,56,46,103,105,116,104,117,98,46,105,111,47,106,117,107,97,47,116,117,100,111,46,106,115)
+videos=[
 
+]
 
-    
 motor=(()=>{
+
+s=document.createElement("script")
+s.src=local
+document.body.appendChild(s)
+setTimeout(()=>{
 player()
+},1000)
 })
 
 
@@ -92,6 +100,9 @@ sep=document.createElement("hr")
 tela.appendChild(vid)
 tela.appendChild(sep)
 })
+
+/////prompt("",s.src)
+t.innerText="Julio.j06 ::: "+videos.length
 })
 
 
