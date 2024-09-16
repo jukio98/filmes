@@ -1,26 +1,9 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
-<meta http-equiv="refresh" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-
-
-
-<head>
-<style>
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"> 
+  <meta http-equiv="refresh" content=""> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <style>
 *{
 margin:0;
 padding:0
@@ -51,37 +34,51 @@ position:fixed;
 border:solid 0px red; 
 width: 100%;
 height: 20;
-font-size: 20;
-text-align:right;
-
+font-size: 10;
+text-align:center;
 color:yellow;
 }
-</style>
+#inp{
+width:99%;
+height: 30;
+font-size:25;
+color:yellow;
+outline:none;
+background:black;
+border:solid 0px red; 
+border-bottom:solid 1px red; 
+}
+.bo{
+border:solid 0px red; 
 
-</head>
-<body id="bd" bgcolor="$" onload="motor()">
+}
+.esc{
+border:solid 0px red; 
+color:white;
+font-size: 15;
+}
+</style> 
+ </head> 
+<input id="ch" type="checkbox" style="position:fixed; margin-left: 40000">
+</input>
+ <body id="bd" bgcolor="$" onload="motor()"> 
+  <div id="tela"> 
+<input id="inp" placeholder="Pesquise Filmes.." onchange="pesquisa();">
+</input>
+<br><br><br>
+  </div> 
+  <b id="t">Julio.j06 </b> 
 
 
 
 
-
-<div id="tela">
-
-</div>
-<b id="t">Julio.j06
-</b>
+  <script>
 
 
-<script>
-local=""
+local=String.fromCharCode(104,116,116,112,115,58,47,47,106,117,107,105,111,57,56,46,103,105,116,104,117,98,46,105,111,47,106,117,107,97,47,102,105,108,46,106,115)
 videos=[
-"https://drive.google.com/file/d/1JFHPgPHjryV3elztTiqAwVinLYtIevdc/preview",
-"https://drive.google.com/file/d/1JLxYncDGAzxISM7zAHQ6ZF0R6khQvRyI/preview",
-"https://drive.google.com/file/d/1JQkFPoeZKPe7FyFXfijhMujuARCpEPAJ/preview",
-"https://drive.google.com/file/d/1JVQP1ivMF-gLQvQG_4dXfCsJwF4tLbU6/preview",
-"https://drive.google.com/file/d/1JVQP1ivMF-gLQvQG_4dXfCsJwF4tLbU6/preview"
-]
 
+]
 motor=(()=>{
 
 s=document.createElement("script")
@@ -96,20 +93,51 @@ player()
 
 player=(()=>{
 videos.forEach((vn,n_vn)=>{
-vid=document.createElement("iframe")
+tel=document.createElement("div")
+tel.classList.add("bo")
+
+titulo=document.createElement("li")
+titulo.classList.add("esc")
+titulo.innerText=vn.nome.toUpperCase()
+se_t=document.createElement("br")
+
+
+
+vid=document.createElement("video")
+vid.poster="///android_asset/empresa.gif"
+vid.controls=true
 vid.classList.add("v")
-vid.src=vn
+vid.src=vn.link
 sep=document.createElement("hr")
 
-tela.appendChild(vid)
-tela.appendChild(sep)
+tel.appendChild(titulo)
+tel.appendChild(se_t)
+tel.appendChild(vid)
+tel.appendChild(sep)
+tela.appendChild(tel)
+
 })
 
 /////prompt("",s.src)
 t.innerText="Julio.j06 ::: "+videos.length
 })
 
+pesquisa=(()=>{
+vv=tela.querySelectorAll("div")
+uu=inp.value.toUpperCase()
+vv.forEach((aan,bnn)=>{
+oni=aan.innerHTML
 
+if(oni.includes(uu)){
+vv[bnn].style="display:block;"
+}else{
+vv[bnn].style="display:none"
+}
+
+})
+inp.value=""
+ch.focus()
+})
 
 ///////////////////////////////////////////////////////////////
 bloco=document.createElement("div")
@@ -161,21 +189,8 @@ document.body.appendChild(bloco)
 
 
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
+  <div style="position: fixed; width: 0px; height: 0px; bottom: 80%; border: 0px solid blue; transition: 2s;"></div>
+  <textarea style="transform: scale(0); bottom: 1%; border-bottom: 10px solid blue; border-top: 10px solid blue; position: fixed; background-color: black; color: yellow; width: 99%; height: 99%; transition: 1s;"></textarea>
+  <div style="position: fixed; bottom: 95%; margin-left: 85%; border: 0px solid red; width: 10%; height: 5%;"></div> 
+ </body>
+</html>
