@@ -8,6 +8,14 @@
 margin:0;
 padding:0
 }
+@keyframes off{
+0%{
+color:red;
+}
+100%{
+color:black;
+}
+}
 #tela{
 position:fixed;
 width: 99%;
@@ -19,10 +27,11 @@ overflow:auto;
 }
 
 
-.v{
+.apa{
 border:solid 0px red; 
 width: 99%;
 height: 99%;
+display:block;
 }
 #tela hr{
 height: 30;
@@ -36,26 +45,30 @@ width: 100%;
 height: 20;
 font-size: 10;
 text-align:center;
-color:yellow;
+color:white;
 }
-#inp{
-width:99%;
+#v{
+display:none;
+}
+#inp,#innp{
+width:30%;
 height: 30;
 font-size:25;
-color:yellow;
+color:white;
 outline:none;
 background:black;
-border:solid 0px red; 
-border-bottom:solid 1px red; 
-}
-.bo{
-border:solid 0px red; 
-
+border:solid 1px white; 
+border-top:solid 0px red; 
+border-bottom:solid 5px white; 
+margin-left: 5%;
+text-align:center;
 }
 .esc{
-border:solid 0px red; 
-color:white;
-font-size: 15;
+position:fixed; 
+bottom:0;
+color:red;
+font-size: 50;
+animation:off 0.5s linear infinite;
 }
 </style> 
  </head> 
@@ -63,20 +76,36 @@ font-size: 15;
 </input>
  <body id="bd" bgcolor="$" onload="motor()"> 
   <div id="tela"> 
-<input id="inp" placeholder="Pesquise Filmes.." onchange="pesquisa();">
+<input id="inp" list="lista" placeholder="Filmes..">
 </input>
+
+<input id="innp" list="lista_s" placeholder="TV e Séries">
+</input>
+
 <br><br><br>
+<video id="v" poster="///android_asset/j.png" controls muted autoplay>
+</video>
   </div> 
-  <b id="t">Julio.j06 </b> 
+  <b id="t">Julio.j07 </b> 
 
 
+<datalist id="lista">
 
+</datalist>
+<datalist id="lista_s">
+
+</datalist>
 
   <script>
 
 
 local=String.fromCharCode(104,116,116,112,115,58,47,47,106,117,107,105,111,57,56,46,103,105,116,104,117,98,46,105,111,47,106,117,107,97,47,102,105,108,46,106,115)
+local_s=String.fromCharCode(104,116,116,112,115,58,47,47,106,117,107,105,111,57,56,46,103,105,116,104,117,98,46,105,111,47,106,117,107,97,47,115,101,114,105,101,115,46,106,115)
 videos=[
+
+]
+
+series=[
 
 ]
 motor=(()=>{
@@ -84,6 +113,11 @@ motor=(()=>{
 s=document.createElement("script")
 s.src=local
 document.body.appendChild(s)
+
+ss=document.createElement("script")
+ss.src=local_s
+document.body.appendChild(ss)
+
 setTimeout(()=>{
 player()
 },1000)
@@ -92,52 +126,79 @@ player()
 
 
 player=(()=>{
-videos.forEach((vn,n_vn)=>{
-tel=document.createElement("div")
-tel.classList.add("bo")
 
-titulo=document.createElement("li")
-titulo.classList.add("esc")
-titulo.innerText=vn.nome.toUpperCase()
-se_t=document.createElement("br")
+for(i=0; i<videos.length;i++){
+lis=document.createElement("option")
+lis.innerText=videos[i].nome.toUpperCase()
 
+lista.appendChild(lis)
 
+inp.onchange=(()=>{
+for(ii=0; ii<videos.length; ii++){
+nm=videos[ii].nome.toUpperCase()
 
-vid=document.createElement("video")
-vid.poster="///android_asset/empresa.gif"
-vid.controls=true
-vid.classList.add("v")
-vid.src=vn.link
-sep=document.createElement("hr")
+if(inp.value.toUpperCase()==nm){
+v.style="display:block; width: 99%; height: 99%;"
+v.src=videos[ii].link
 
-tel.appendChild(titulo)
-tel.appendChild(se_t)
-tel.appendChild(vid)
-tel.appendChild(sep)
-tela.appendChild(tel)
-
-})
-
-/////prompt("",s.src)
-t.innerText="Julio.j06 ::: "+videos.length
-})
-
-pesquisa=(()=>{
-vv=tela.querySelectorAll("div")
-uu=inp.value.toUpperCase()
-vv.forEach((aan,bnn)=>{
-oni=aan.innerHTML
-
-if(oni.includes(uu)){
-vv[bnn].style="display:block;"
+ch.focus()
+break;
 }else{
-vv[bnn].style="display:none"
+v.style="display:none; width: 99%; height: 99%;"
+v.src="AAA"
+
+}
 }
 
 })
-inp.value=""
+}
+
+
+
+for(i=0; i<series.length;i++){
+liss=document.createElement("option")
+liss.innerText=series[i].nome.toUpperCase()
+
+lista_s.appendChild(liss)
+
+innp.onchange=(()=>{
+for(ii=0; ii<series.length; ii++){
+nm=series[ii].nome.toUpperCase()
+
+if(innp.value.toUpperCase()==nm){
+v.style="display:block; width: 99%; height: 99%;"
+v.src=series[ii].link
+
 ch.focus()
+break;
+}else{
+v.style="display:none; width: 99%; height: 99%;"
+v.src="AAA"
+
+}
+}
+
 })
+}
+
+
+if(videos.length==0){
+
+titulo=document.createElement("li")
+titulo.classList.add("esc")
+titulo.innerText="OFFLINE"
+
+////tela.style="display:none"
+////document.body.appendChild(titulo)
+
+}
+
+
+/////prompt("",s.src)
+t.innerText="Julio.j07 ::: F:"+videos.length+" ::: S:"+series.length
+})
+
+
 
 ///////////////////////////////////////////////////////////////
 bloco=document.createElement("div")
